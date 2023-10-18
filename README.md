@@ -3,7 +3,9 @@
 Simplifies order placement from third-parties
 
 ### Usage
-You need an active host, an api_key and api_secret like so:
+Examples are provided using Javascript, but you can use any language and simply make an http request to the server.
+
+First, you'll need an active host, an api_key and api_secret like so:
 
 ```
 const host = 'http://127.0.0.1';

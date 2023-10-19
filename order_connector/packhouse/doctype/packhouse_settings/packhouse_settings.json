@@ -7,7 +7,12 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "lookup_warehouses"
+  "selling_stock_settings_section",
+  "default_warehouse_first",
+  "section_break_21m6l",
+  "lookup_warehouses",
+  "column_break_ouik3",
+  "excluded_warehouses"
  ],
  "fields": [
   {
@@ -16,12 +21,39 @@
    "fieldtype": "Table MultiSelect",
    "label": "Stock Balance Lookup Warehouses",
    "options": "Warehouses"
+  },
+  {
+   "fieldname": "selling_stock_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Selling Stock Settings"
+  },
+  {
+   "fieldname": "column_break_ouik3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Selected warehouses will not be used in sales transactions",
+   "fieldname": "excluded_warehouses",
+   "fieldtype": "Table MultiSelect",
+   "label": "Excluded Warehouses",
+   "options": "Warehouses"
+  },
+  {
+   "fieldname": "section_break_21m6l",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "default_warehouse_first",
+   "fieldtype": "Check",
+   "label": "Prioritise Item Default Warehouse On Sales Transactions"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-10-18 16:32:02.189547",
+ "modified": "2023-10-19 10:51:27.911926",
  "modified_by": "Administrator",
  "module": "Packhouse",
  "name": "Packhouse Settings",

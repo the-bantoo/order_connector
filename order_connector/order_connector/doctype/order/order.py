@@ -54,17 +54,16 @@ class Order(Document):
 
 		for item in self.items:
 			if item.item:
-				self.bal = get_data(item.item)
-				if len(self.bal)>0:
-					leng = len(self.bal)
+				bal = get_data(item.item)
+				if len(bal)>0:
 					item.balance = self.bal[0].actual_qty
 					item.warehouse = self.bal[0].warehouse
 				else:
 					item.balance = 0
-					item.warehouse = " "
+					item.warehouse = ""
 			else:
 				item.balance = 0
-				item.warehouse = " "
+				item.warehouse = ""
 			
 
 		packhouse_settings = get_packhouse_settings()

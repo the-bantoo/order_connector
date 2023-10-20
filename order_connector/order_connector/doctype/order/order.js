@@ -10,7 +10,10 @@ frappe.ui.form.on('Order Item', {
 	},
 	price: function(frm) {
 		update_totals(frm);		
-	}
+	},
+	item: function(frm) {
+		update_balances(frm);		
+	},
 });
 
 function update_totals(frm){
@@ -20,6 +23,15 @@ function update_totals(frm){
 		callback: () => {
 			frm.refresh();
 			//refresh_field('items');
+		}
+	})
+}
+function update_balances(frm){
+	frappe.call({
+		method: "update_item_balance",
+		doc: frm.doc,
+		callback: () => {
+			frm.refresh();
 		}
 	})
 }

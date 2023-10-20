@@ -20,6 +20,7 @@ class OrderRequest(Document):
 		"""
 
 
+
 	def update_fields(self):
 		#frappe.errprint(self.total_qty)
 
@@ -61,8 +62,8 @@ class OrderRequest(Document):
 			if item.item:
 				bal = get_data(item.item)
 				if len(bal)>0:
-					item.balance = self.bal[0].actual_qty
-					item.warehouse = self.bal[0].warehouse
+					item.balance = bal[0].actual_qty
+					item.warehouse = bal[0].warehouse
 				else:
 					item.balance = 0
 					item.warehouse = ""

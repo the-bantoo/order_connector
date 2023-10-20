@@ -7,12 +7,17 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "order_information_section",
   "partner_order_no",
   "column_break_goyml",
   "delivery_date",
-  "delivery_section",
+  "customer_information_section",
+  "customer_lookup",
+  "section_break_gunmn",
   "customer",
   "column_break_ykfjd",
+  "email",
+  "phone_number",
   "customer_address",
   "search_items_section",
   "items",
@@ -28,10 +33,6 @@
  ],
  "fields": [
   {
-   "fieldname": "delivery_section",
-   "fieldtype": "Section Break"
-  },
-  {
    "fieldname": "delivery_date",
    "fieldtype": "Date",
    "in_list_view": 1,
@@ -41,7 +42,7 @@
   {
    "fieldname": "search_items_section",
    "fieldtype": "Section Break",
-   "label": "Search Items"
+   "label": "Items Requested"
   },
   {
    "fieldname": "total_qty",
@@ -84,8 +85,7 @@
    "fieldname": "customer_address",
    "fieldtype": "Small Text",
    "in_list_view": 1,
-   "label": "Customer Address",
-   "reqd": 1
+   "label": "Customer Address"
   },
   {
    "default": "New",
@@ -109,7 +109,7 @@
    "fieldname": "items",
    "fieldtype": "Table",
    "label": "Items",
-   "options": "Order Item",
+   "options": "Order Request Item",
    "reqd": 1
   },
   {
@@ -131,6 +131,38 @@
   {
    "fieldname": "column_break_ykfjd",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "phone_number",
+   "fieldtype": "Data",
+   "label": "Phone Number"
+  },
+  {
+   "fieldname": "customer_lookup",
+   "fieldtype": "Link",
+   "label": "Customer Lookup",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "section_break_gunmn",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "order_information_section",
+   "fieldtype": "Section Break",
+   "label": "Order Information"
+  },
+  {
+   "fieldname": "customer_information_section",
+   "fieldtype": "Section Break",
+   "label": "Customer Information"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -140,10 +172,10 @@
    "link_fieldname": "name"
   }
  ],
- "modified": "2023-10-18 12:09:44.178603",
+ "modified": "2023-10-20 11:41:59.456681",
  "modified_by": "Administrator",
  "module": "Order Connector",
- "name": "Order",
+ "name": "Order Request",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [

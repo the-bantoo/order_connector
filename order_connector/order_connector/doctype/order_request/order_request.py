@@ -7,13 +7,18 @@ import json
 from frappe.model.document import Document
 from erpnext.stock.dashboard.item_dashboard import get_data
 
-class Order(Document):
+class OrderRequest(Document):
 	@frappe.whitelist()
 	def validate(self):
 		""" update items.balance, items.amount, doc.total_qty, doc.total_amount
 		"""
 		self.update_fields()
 		self.validate_items(self.items)
+
+	def after_submit(self):
+		""" create sales order_request and link it to Order Request
+		"""
+
 
 	def update_fields(self):
 		#frappe.errprint(self.total_qty)
@@ -48,7 +53,7 @@ class Order(Document):
 			# 		- Lookup WHs (packhouse_settings.lookup_warehouses)
 			# 		- All Others, except Exclusion list (packhouse_settings.excluded_warehouses)
 			# Next (priority 2):
-			# 	- When unit changes: convert to new unit if there's a conversion factor in item, otherwise it should be provided in the order item line (add fields similar to EF)
+			# 	- When unit changes: convert to new unit if there's a conversion factor in item, otherwise it should be provided in the order_request item line (add fields similar to EF)
 		
 		# find a way to get the item balance using get_data, and assign it to self.bal
 

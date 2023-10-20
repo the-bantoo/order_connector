@@ -90,7 +90,7 @@
  "modified": "2023-10-18 11:52:35.713071",
  "modified_by": "Administrator",
  "module": "Order Connector",
- "name": "Order Item",
+ "name": "Order Request Item",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",

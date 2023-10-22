@@ -22,6 +22,11 @@ def get_orders(name=None, limit=20):
 @frappe.whitelist(allow_guest=True)
 def insert_order(data):
     try:
+        for item in data['items']:
+            frappe.errprint(item)
+            if item.get('item_name') == '' or item.get('item_name') == None:
+                return "item_name cannot be empty"
+        
         order_dict = {'doctype': 'Order Request'}
         order_dict.update(data)
 

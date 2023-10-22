@@ -8,11 +8,14 @@
  "engine": "InnoDB",
  "field_order": [
   "order_information_section",
+  "partner",
+  "section_break_pq3hz",
   "partner_order_no",
   "column_break_goyml",
   "delivery_date",
   "customer_information_section",
-  "customer_lookup",
+  "lookup_addr",
+  "lookup_customer",
   "section_break_gunmn",
   "customer",
   "column_break_ykfjd",
@@ -29,7 +32,8 @@
   "remarks",
   "column_break_fuu9w",
   "status",
-  "sales_order"
+  "sales_order",
+  "amended_from"
  ],
  "fields": [
   {
@@ -144,12 +148,6 @@
    "label": "Phone Number"
   },
   {
-   "fieldname": "customer_lookup",
-   "fieldtype": "Link",
-   "label": "Customer Lookup",
-   "options": "Customer"
-  },
-  {
    "fieldname": "section_break_gunmn",
    "fieldtype": "Section Break",
    "hide_border": 1
@@ -163,16 +161,52 @@
    "fieldname": "customer_information_section",
    "fieldtype": "Section Break",
    "label": "Customer Information"
+  },
+  {
+   "fieldname": "partner",
+   "fieldtype": "Link",
+   "label": "Partner",
+   "no_copy": 1,
+   "options": "Customer"
+  },
+  {
+   "fieldname": "section_break_pq3hz",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "depends_on": "eval: doc.partner !== undefined && doc.partner !== '';",
+   "fieldname": "lookup_addr",
+   "fieldtype": "Link",
+   "label": "Customer Lookup",
+   "options": "Address"
+  },
+  {
+   "depends_on": "eval: doc.partner === undefined || doc.partner === '';",
+   "fieldname": "lookup_customer",
+   "fieldtype": "Link",
+   "label": "Customer Lookup",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Order Request",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [
   {
    "link_doctype": "Sales Order",
    "link_fieldname": "name"
   }
  ],
- "modified": "2023-10-20 11:41:59.456681",
+ "modified": "2023-10-22 14:27:46.391034",
  "modified_by": "Administrator",
  "module": "Order Connector",
  "name": "Order Request",

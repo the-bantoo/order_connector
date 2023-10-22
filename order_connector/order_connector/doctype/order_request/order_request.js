@@ -38,7 +38,7 @@ frappe.ui.form.on('Order Request Item', {
 
 function update_totals(frm){
 	frappe.call({
-		method: "validate",
+		method: "calculate_totals",
 		doc: frm.doc,
 		callback: () => {
 			frm.refresh();

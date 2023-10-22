@@ -67,6 +67,7 @@
    "label": "More Information"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "sales_order",
    "fieldtype": "Link",
    "label": "Sales Order",
@@ -92,6 +93,7 @@
    "label": "Customer Address"
   },
   {
+   "allow_on_submit": 1,
    "default": "New",
    "fieldname": "status",
    "fieldtype": "Select",
@@ -206,7 +208,7 @@
    "link_fieldname": "name"
   }
  ],
- "modified": "2023-10-22 14:27:46.391034",
+ "modified": "2023-10-22 16:03:12.017915",
  "modified_by": "Administrator",
  "module": "Order Connector",
  "name": "Order Request",

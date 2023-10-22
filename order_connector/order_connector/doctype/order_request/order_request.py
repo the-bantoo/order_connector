@@ -15,10 +15,13 @@ class OrderRequest(Document):
 		
 	@frappe.whitelist()
 	def validate(self):
+		self.validate_items(self.items)
+
+	@frappe.whitelist()
+	def calculate_totals(self):
 		""" update items.balance, items.amount, doc.total_qty, doc.total_amount
 		"""
 		self.update_fields()
-		self.validate_items(self.items)
 
 	@frappe.whitelist()
 	def setup_partner(self):
@@ -217,7 +220,14 @@ class OrderRequest(Document):
 			so_dict.update({'taxes_and_charges': taxes[0].name})
 			
 		so_doc = frappe.get_doc(so_dict)
-		so_doc.insert()
+		so_doc.insert(ignore_mandatory=True)
+
+		self.sales_order = so_doc.name
+		self.status = "Accepted"
+		self.save()
+		
+		#frappe.db.set_value("Order Request", self.name, {"sales_order": self.sales_order, "status": "Accepted"})
+
 
 
 

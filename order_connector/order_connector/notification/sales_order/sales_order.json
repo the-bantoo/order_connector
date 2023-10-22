@@ -1,0 +1,33 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "",
+ "creation": "2023-10-22 15:19:26.668966",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Sales Order",
+ "enabled": 1,
+ "event": "Method",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<h3>Order Summary</h3>\n\n<table border=2 >\n    <tr align=\"center\">\n        <th>Item</th>\n        <th>Quantity</th>\n        <th>Unit</th>\n    </tr>\n    {% for item in doc.items %}\n        {% if frappe.utils.flt(item.received_qty, 2) > 0.0 %}\n            <tr align=\"center\">\n                <td>{{ item.item_code }}</td>\n                <td>{{ frappe.utils.flt(item.qty, 2) }}</td>\n                <td>{{ item.uom }}</td>\n            </tr>\n        {% endif %}\n    {% endfor %}\n</table>\n\n<center><button class='btn-primary btn-lg primary-action' href='{{ frappe.utils.get_url_to_form(\"Sales Order\", doc.name) }}'>Open Order</button></center>\n\n",
+ "method": "after_insert",
+ "modified": "2023-10-22 15:19:26.668966",
+ "modified_by": "Administrator",
+ "module": "Order Connector",
+ "name": "Sales Order",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "cc": "adam.daveed@gmail.com",
+   "receiver_by_role": "Guest"
+  }
+ ],
+ "send_system_notification": 1,
+ "send_to_all_assignees": 0,
+ "sender": "Zawadi",
+ "sender_email": "erpnextafrica@gmail.com",
+ "subject": "New Sales Order {{ doc.name }}",
+ "value_changed": "status"
+}

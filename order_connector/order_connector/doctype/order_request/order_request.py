@@ -193,7 +193,7 @@ class OrderRequest(Document):
 				'delivery_date': self.delivery_date
 			})
 
-		company = frappe.get_list('Company', fields=['*'], order_by='creation asc', limit=1)[0]
+		company = get_company()
 		taxes = frappe.get_list('Sales Taxes and Charges Template', fields=['name'], filters={'is_default': 1}, order_by='creation asc', limit=1)
 		so_dict = {
 			'doctype': 'Sales Order',
@@ -372,3 +372,6 @@ class OrderRequest(Document):
 			
 def get_packhouse_settings():
 	return frappe.get_cached_doc("Packhouse Settings")
+
+def get_company():
+	return frappe.get_list('Company', fields=['*'], order_by='creation asc', limit=1)[0]

@@ -44,18 +44,17 @@ def get_items(item_code=None, limit=20):
 
     lookup_warehouses = []
     
-    if len(settings.lookup_warehouses) > 0:
-        for w in settings.lookup_warehouses:
-            lookup_warehouses.append(w.name)
+    for w in settings.lookup_warehouses:
+        lookup_warehouses.append(w.name)
     
     try:
         filters = {}
         item_list = []
         if item_code:
             filters = {'name': item_code}
-
+        from order_connector.order_connector.doctype.order_request.order_request import get_company
         items = frappe.get_all('Item', fields=['item_code', 'item_name', 'description', 'stock_uom'], filters=filters, limit=limit)
-        # items = frappe.get_all('Item', fields=['item_code', 'item_name', 'description', 'stock_uom'], filters=filters, limit=limit)
+        item_defaults = frappe.get_all('Item Default', fields=['default_warehouse'], filters={'company': get_company().name}, limit=10)
         for item in items:
             item_price = frappe.get_all('Item Price', fields=['price_list_rate'], filters={'item_code': item.item_code, 'selling': 1}, limit=1, order_by='creation desc')
             if len(item_price) > 0:
@@ -63,14 +62,9 @@ def get_items(item_code=None, limit=20):
             balances = get_item_balances(item.item_code)
             
             total_bal = 0
-            if len(balances) > 0:
-                for wb in balances:
-                    if wb.warehouse in lookup_warehouses:
-                        total_bal = total_bal + wb.actual_qty
-                    else:
-                        # use default WH
-                        #frappe.get_value("Item", "Stock Settings", 'default_w')
-                        total_bal = 0
+            for wb in balances:
+                if (wb.warehouse in lookup_warehouses) or (wb.warehouse == item_defaults[0].default_warehouse):
+                    total_bal = total_bal + wb.actual_qty
 
             item.update({'balance': total_bal})
             

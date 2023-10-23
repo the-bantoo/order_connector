@@ -12,6 +12,7 @@
   "section_break_pq3hz",
   "partner_order_no",
   "column_break_goyml",
+  "order_date",
   "delivery_date",
   "customer_information_section",
   "lookup_addr",
@@ -198,6 +199,13 @@
    "options": "Order Request",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "order_date",
+   "fieldtype": "Date",
+   "label": "Order Date",
+   "options": "today()",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
@@ -208,7 +216,7 @@
    "link_fieldname": "name"
   }
  ],
- "modified": "2023-10-22 16:03:12.017915",
+ "modified": "2023-10-23 16:38:59.012133",
  "modified_by": "Administrator",
  "module": "Order Connector",
  "name": "Order Request",

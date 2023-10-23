@@ -44,8 +44,9 @@ def get_items(item_code=None, limit=20):
 
     lookup_warehouses = []
     
-    for w in settings.lookup_warehouses:
-        lookup_warehouses.append(w.name)
+    if len(settings.lookup_warehouses) > 0:
+        for w in settings.lookup_warehouses:
+            lookup_warehouses.append(w.name)
     
     try:
         filters = {}
@@ -54,23 +55,31 @@ def get_items(item_code=None, limit=20):
             filters = {'name': item_code}
 
         items = frappe.get_all('Item', fields=['item_code', 'item_name', 'description', 'stock_uom'], filters=filters, limit=limit)
+        # items = frappe.get_all('Item', fields=['item_code', 'item_name', 'description', 'stock_uom'], filters=filters, limit=limit)
         for item in items:
             item_price = frappe.get_all('Item Price', fields=['price_list_rate'], filters={'item_code': item.item_code, 'selling': 1}, limit=1, order_by='creation desc')
-            item.update({'price': item_price[0].price_list_rate or 0})
+            if len(item_price) > 0:
+                item.update({'price': item_price[0].price_list_rate or 0})
             balances = get_item_balances(item.item_code)
             
             total_bal = 0
-            for wb in balances:
-                if wb.warehouse in lookup_warehouses:
-                    total_bal = total_bal + wb.actual_qty
+            if len(balances) > 0:
+                for wb in balances:
+                    if wb.warehouse in lookup_warehouses:
+                        total_bal = total_bal + wb.actual_qty
+                    else:
+                        # use default WH
+                        #frappe.get_value("Item", "Stock Settings", 'default_w')
+                        total_bal = 0
+
             item.update({'balance': total_bal})
             
             item_list.append(item)
         
-        return items
+        return item_list
     
     except Exception as e:
-        return e
+        frappe.throw(e)
 
 def get_packhouse_settings():
     return frappe.get_cached_doc('Packhouse Settings', 'Packhouse Settings')

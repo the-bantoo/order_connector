@@ -201,7 +201,7 @@ class OrderRequest(Document):
 			'po_no': self.partner_order_no,
 			'customer_address': addr,
 			'shipping_address_name': addr,
-			'transaction_date': today(),
+			'transaction_date': self.order_date,
 			'company': company.name,
 			'currency': company.default_currency,
 			'price_list': company.default_price_list,
@@ -265,8 +265,11 @@ class OrderRequest(Document):
 			# 	- When unit changes: convert to new unit if there's a conversion factor in item, otherwise it should be provided in the order_request item line (add fields similar to EF)
 		
 		# find a way to get the item balance using get_data, and assign it to self.bal
-
 		for item in self.items:
+			item_price = frappe.get_all('Item Price', fields=['price_list_rate'], filters={'item_code': item.item, 'selling': 1}, limit=1, order_by='creation desc')
+			item_uom = frappe.get_value('Item', item.item, 'stock_uom')
+			
+			item.unit = item_uom
 			if item.item:
 				bal = get_data(item.item)
 				if len(bal)>0:
@@ -282,6 +285,10 @@ class OrderRequest(Document):
 			else:
 				item.balance = 0
 				item.warehouse = ""
+
+			if len(item_price) > 0:
+				item.price = item_price[0].price_list_rate or 0
+			
 			
 
 		packhouse_settings = get_packhouse_settings()

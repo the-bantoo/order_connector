@@ -32,6 +32,7 @@ frappe.ui.form.on('Order Request Item', {
 		update_totals(frm);		
 	},
 	item: function(frm) {
+		//get_prices(frm);
 		update_balances(frm);		
 	},
 });
@@ -46,6 +47,7 @@ function update_totals(frm){
 		}
 	})
 }
+
 function update_balances(frm){
 	frappe.call({
 		method: "update_item_balance",

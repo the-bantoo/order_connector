@@ -154,8 +154,8 @@ class OrderRequest(Document):
 	def get_partners(self):
 		ph_settings = get_packhouse_settings()
 		partners = []
-		for p in ph_settings.partners:
-			partners.append(p.name)
+		for p in ph_settings.active_partners:
+			partners.append(p.partner)
 
 		return partners
 

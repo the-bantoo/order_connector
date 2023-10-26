@@ -51,15 +51,15 @@
   {
    "hidden": 0,
    "is_query_report": 1,
-   "label": "Sales Order Analytics",
+   "label": "Sales Order Analysis",
    "link_count": 0,
-   "link_to": "Sales Analytics",
+   "link_to": "Sales Order Analysis",
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2023-10-22 15:29:23.197359",
+ "modified": "2023-10-26 11:27:14.381032",
  "modified_by": "Administrator",
  "module": "Order Connector",
  "name": "Orders",

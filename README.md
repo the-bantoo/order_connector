@@ -13,7 +13,7 @@
 - Update Orders
 - Update Products
 
-
+---
 
 ## Usage
 Examples are provided using Javascript, but you can use any language and simply make an http request to the server.
@@ -25,6 +25,7 @@ const host = 'http://127.0.0.1';
 const api_key = '22dd9b699b04551';
 const api_secret = 'b56e27e7f065abf';
 ```
+---
 
 ### <a name="1"></a>1. Getting Products: GET - /api/method/order_connector.api.get_products
 
@@ -116,6 +117,9 @@ fetch(url, {
     }
 ]
 ```
+
+---
+
 ## <a name="2"></a>2. Inserting Products: GET - /api/method/order_connector.api.insert_product
 #### Endpoint
 `{{host}}/api/method/order_connector.api/insert_product`
@@ -127,8 +131,6 @@ Allows for a single or bulk insertion of products.
 | Parameter | Type   | Description                                            | Mandatory |
 |-----------|--------|--------------------------------------------------------|-----------|
 | `data`    | object | JSON object containing product details. See examples below. | Yes       |
-
-##### Product Detail Parameters
 
 | Parameter         | Type     | Description                                         | Mandatory |
 |-------------------|----------|-----------------------------------------------------|-----------|
@@ -270,6 +272,9 @@ if response.status_code == 200:
 else:
     print(f"Error: {response.status_code}")
 ```
+
+---
+
 ## <a name="3"></a>3. Getting Orders: GET - /api/method/order_connector.api.get_orders
 ### Endpoint
 
@@ -388,6 +393,8 @@ except Exception as e:
     print(e)
 ```
 
+---
+
 ## <a name="4"></a>4. Inserting Orders: POST - /api/method/order_connector.api.insert_order
 #### Endpoint
 `{{host}}/api/method/order_connector.api/insert_order`
@@ -397,8 +404,6 @@ except Exception as e:
 | Parameter | Type   | Description                                      | Mandatory |
 |-----------|--------|--------------------------------------------------|-----------|
 | `data`    | object | JSON object containing order details. See example below. | Yes       |
-
-##### Order Parameters
 
 | Parameter         | Type     | Description                                    | Mandatory |
 |-------------------|----------|------------------------------------------------|-----------|
@@ -410,8 +415,9 @@ except Exception as e:
 | `email`           | string   | Customer's email address.                      | No        |
 | `phone_number`    | string   | Customer's phone number.                       | No        |
 | `remarks`         | string   | Additional remarks or notes.                   | No        |
+| `items`         | list   | Order items, detailed in the table below                  | Yes        |
 
-##### Items Data Parameters
+##### Items Parameters
 
 | Parameter  | Type     | Description                                      | Mandatory |
 |------------|----------|--------------------------------------------------|-----------|

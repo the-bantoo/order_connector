@@ -9,9 +9,9 @@ def get_orders(name=None, limit=20):
         orders = []
         if name:
             filters = {'name': name}
-        order_parents = frappe.get_all('Order Request', fields=['name', 'partner_order_no', 'customer', 'customer_address', 'total_amount', 'status', 'docstatus', 'remarks', 'creation', 'modified', 'owner'], filters=filters, limit=limit, as_list=0)
+        order_parents = frappe.get_all('Order Request', fields=['name', 'partner_order_no', 'customer', 'customer_address', 'phone_number', 'gps_coordinates', 'total_amount', 'status', 'remarks', 'creation', 'modified', 'owner'], filters=filters, limit=limit, as_list=0)
         for order in order_parents:
-            order_items = frappe.get_all('Order Request Item', fields=['item_name', 'description', 'unit', 'qty', 'price', 'amount'], filters={'parent': order.name}, limit=0)
+            order_items = frappe.get_all('Order Request Item', fields=['sku', 'processing_type', 'description', 'unit', 'qty', 'price', 'amount', 'status'], filters={'parent': order.name}, limit=0)
             order.update({'items': order_items})
             orders.append(order)
         

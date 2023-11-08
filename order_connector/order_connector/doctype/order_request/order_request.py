@@ -185,6 +185,8 @@ class OrderRequest(Document):
 		for item in self.items:
 			so_items.append({
 				'item_code': item.item,
+				'sku': item.sku,
+				'processing_type': item.processing_type,
 				'description': item.description,
 				'rate': item.price,
 				'uom': item.unit,
@@ -243,13 +245,17 @@ class OrderRequest(Document):
 		""" ensure no negatives in qty or price
 		"""
 		for item in items:
+			item_name = item.sku
+			if item.item:
+				item_name = "{1} ({0})".format(item.sku, item.item)
+
 			if item.qty < 1:
 				frappe.throw(_("Row # {1}: {0} quantity cannot be less than 1").format(
-					frappe.bold(item.item_name), frappe.bold(item.idx)
+					frappe.bold(item_name), frappe.bold(item.idx)
 				))
 			if item.price < 1:
 				frappe.throw(_("Row # {1}: {0} price cannot be less than 1").format(
-					frappe.bold(item.item_name), item.idx
+					frappe.bold(item_name), frappe.bold(item.idx)
 				))			
 
 	@frappe.whitelist()

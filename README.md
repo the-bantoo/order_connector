@@ -35,7 +35,7 @@ const api_secret = 'b56e27e7f065abf';
 
 | Parameter | Type   | Description                                  | Default Value | Mandatory |
 |-----------|--------|----------------------------------------------|---------------|-----------|
-| `sku`     | string | The Stock Keeping Unit (SKU) of the product. | ""            | No        |
+| `sku`     | string | The Stock Keeping Unit (SKU) of the product. | null            | No        |
 | `limit`   | integer| The maximum number of products to retrieve.  | 20            | No        |
 
 #### Response
@@ -279,8 +279,8 @@ else:
 
 | Parameter | Type     | Description                            | Default Value | Mandatory     |
 |-----------|----------|----------------------------------------|---------------|---------------|
-| `name`    | string   | The name of the order request.         | ""            | No            |
-| `limit`   | integer  | The maximum number of order requests.  | 1             | No            |
+| `name`    | string   | The name of the order request.         | null            | No            |
+| `limit`   | integer  | The maximum number of order requests.  | 20             | No            |
 
 ### Response
 

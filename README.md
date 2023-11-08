@@ -1,11 +1,19 @@
 # Order Connector
 
-Simplifies order placement from third-parties
+#### Simplifies order placement from third-parties into ERPNext for Farmers Den
 
-1. [Getting Products: GET - /api/method/order_connector.api.get_products](#1)
-2. [Inserting Products: GET - /api/method/order_connector.api.](#2)
-3. [Getting Orders: GET - /api/method/order_connector.api.get_orders](#3)
-4. [Inserting Orders: POST - /api/method/order_connector.api.insert_order](#4)
+1. [Getting Products](#1)
+2. [Inserting Products](#2)
+3. [Getting Orders](#3)
+4. [Inserting Orders](#4)
+
+#### [Need help / support?](#support)
+
+#### Todo (coming soon)
+- Update Orders
+- Update Products
+
+
 
 ## Usage
 Examples are provided using Javascript, but you can use any language and simply make an http request to the server.
@@ -531,6 +539,10 @@ The API returns the name of the inserted order.
 ```
 
 ---
+
+##<a name="support"></a> Need help?
+- Telegram: https://t.me/dee_adam
+- email: devs@thebantoo.com
 
 
 

@@ -16,9 +16,9 @@
 ---
 
 ## Usage
-Examples are provided using Javascript, but you can use any language and simply make an http request to the server.
+Examples are provided using Javascript and python, but you can use any language and simply make an http request to the server.
 
-First, you'll need an active host, an api_key and api_secret like so:
+First, you'll need an active `host`, an `api_key` and `api_secret` like so:
 
 ```
 const host = 'http://127.0.0.1';
@@ -27,11 +27,9 @@ const api_secret = 'b56e27e7f065abf';
 ```
 ---
 
-### <a name="1"></a>1. Getting Products: GET - /api/method/order_connector.api.get_products
+### <a name="1"></a>1. Getting Products: GET - get_products
 
-#### Endpoint
-
-`{{host}}/api/method/order_connector.api.get_products`
+#### Endpoint: `{{host}}/api/method/order_connector.api.get_products`
 
 #### Parameters
 
@@ -120,9 +118,8 @@ fetch(url, {
 
 ---
 
-## <a name="2"></a>2. Inserting Products: GET - /api/method/order_connector.api.insert_product
-#### Endpoint
-`{{host}}/api/method/order_connector.api/insert_product`
+## <a name="2"></a>2. Inserting Products: GET - insert_product
+#### Endpoint: `{{host}}/api/method/order_connector.api/insert_product`
 
 Allows for a single or bulk insertion of products.
 
@@ -275,10 +272,8 @@ else:
 
 ---
 
-## <a name="3"></a>3. Getting Orders: GET - /api/method/order_connector.api.get_orders
-### Endpoint
-
-`{{host}}/api/method/order_connector.api.get_orders`
+## <a name="3"></a>3. Getting Orders: GET - get_orders
+### Endpoint: `{{host}}/api/method/order_connector.api.get_orders`
 
 ### Parameters
 
@@ -395,9 +390,8 @@ except Exception as e:
 
 ---
 
-## <a name="4"></a>4. Inserting Orders: POST - /api/method/order_connector.api.insert_order
-#### Endpoint
-`{{host}}/api/method/order_connector.api/insert_order`
+## <a name="4"></a>4. Inserting Orders: POST - insert_order
+#### Endpoint: `{{host}}/api/method/order_connector.api/insert_order`
 
 #### Parameters
 
@@ -408,23 +402,23 @@ except Exception as e:
 | Parameter         | Type     | Description                                    | Mandatory |
 |-------------------|----------|------------------------------------------------|-----------|
 | `order_date`      | string   | The date of the order. Format: "YYYY-MM-DD"    | Yes       |
-| `delivery_date`   | string   | The delivery date of the order. Format: "YYYY-MM-DD" | Yes    |
+| `delivery_date`   | string   | The delivery date of the order. Format: "YYYY-MM-DD" | Yes |
 | `partner_order_no`| string   | Partner's order number.                        | Yes       |
 | `customer`        | string   | Customer's name.                               | Yes       |
 | `customer_address`| string   | Customer's address.                            | Yes       |
 | `email`           | string   | Customer's email address.                      | No        |
 | `phone_number`    | string   | Customer's phone number.                       | No        |
 | `remarks`         | string   | Additional remarks or notes.                   | No        |
-| `items`         | list   | Order items, detailed in the table below                  | Yes        |
+| `items`         | list   | Order items, detailed in the table below           | Yes       |
 
-##### Items Parameters
+##### Item List Details
 
 | Parameter  | Type     | Description                                      | Mandatory |
 |------------|----------|--------------------------------------------------|-----------|
 | `sku`      | string   | Stock Keeping Unit/ID of the item.               | Yes       |
 | `unit`     | string   | Unit of measurement for the item.                | Yes       |
 | `qty`      | float    | Quantity of the item.                            | Yes       |
-| `price`    | float    | Price of the item.                               | Yes       |
+| `price`    | float    | Price of the item. Only required if there's a price change. | No        |
 
 #### Request Body Example
 ```json

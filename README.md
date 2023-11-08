@@ -540,10 +540,11 @@ The API returns the name of the inserted order.
 
 ---
 
-##<a name="support"></a> Need help?
+## <a name="support"></a> Need help?
 - Telegram: https://t.me/dee_adam
 - email: devs@thebantoo.com
 
+---
 
 
 #### License

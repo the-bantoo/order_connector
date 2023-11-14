@@ -24,7 +24,8 @@
   "price",
   "column_break_gehdk",
   "amount",
-  "status"
+  "reject_qty",
+  "reject_reason"
  ],
  "fields": [
   {
@@ -68,8 +69,7 @@
    "fieldname": "price",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Price",
-   "reqd": 1
+   "label": "Price"
   },
   {
    "columns": 2,
@@ -147,19 +147,20 @@
    "label": "Processing Type"
   },
   {
-   "allow_on_submit": 1,
-   "default": "Pending",
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "Pending\nCompleted\nRejected\nCancelled",
-   "read_only": 1
+   "fieldname": "reject_reason",
+   "fieldtype": "Data",
+   "label": "Rejection Reason"
+  },
+  {
+   "fieldname": "reject_qty",
+   "fieldtype": "Float",
+   "label": "Rejected Qty"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-11-08 10:58:43.978346",
+ "modified": "2023-11-14 14:56:43.088363",
  "modified_by": "Administrator",
  "module": "Order Connector",
  "name": "Order Request Item",

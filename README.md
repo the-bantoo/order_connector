@@ -50,6 +50,7 @@ The API returns a list of products with the following fields:
 | `product_category`| string | Category of the product.                         |
 | `processing_type`| string  | Type of processing for the product.              |
 | `item_code`      | string  | Farmers Den's Stock Item code associated with the product.           |
+| `unit`    | float    | Unit of Measure of, e.g Kg, Litre, Meter, Each, etc. | Yes      |
 | `approved`       | integer | Approval status of the product. 1= True / 0 = False                 |
 | `disabled`       | integer | Disabled status of the product. 1= True / 0 = False                  |
 | `price`          | float   | Price of the product (if applicable).            |
@@ -107,6 +108,8 @@ fetch(url, {
         "description": null,
         "product_category": "Vegetables",
         "processing_type": "Chopped",
+        "taxable": 0,
+        "unit": "Kg",
         "item_code": null,
         "approved": 0,
         "disabled": 0,
@@ -135,7 +138,9 @@ Allows for a single or bulk insertion of products.
 | `product_name`    | string   | Name of the product.                                | Yes       |
 | `product_category`| string   | Category of the product.                            | Yes       |
 | `processing_type` | string   | Type of processing for the product.                 | Yes       |
-| `price`           | float    | Price of the product.                               | No       |
+| `taxable`         | int      | 1 for Yes, 0 for No.                                | Yes       |
+| `price`           | float    | Price of the product.                               | No        |
+| `unit`            | float    | Unit of Measure of, e.g Kg, Litre, Meter, Each, etc. | Yes      |
 
 #### Request Body Example (Inserting a Single Product)
 
@@ -146,6 +151,8 @@ Allows for a single or bulk insertion of products.
         "product_name": "Apple",
         "product_category": "Vegetables",
         "processing_type": "Whole",
+        "taxable": 0,
+        "unit": "Kg",
         "price": 30.0
     }
 }
@@ -159,6 +166,8 @@ or
             "sku": "SKU407QR",
             "product_name": "Apple",
             "product_category": "Vegetables",
+            "taxable": 0,
+            "unit": "Kg",
             "processing_type": "Whole"
         }
     ]
@@ -176,6 +185,8 @@ or
             "product_name": "Apple",
             "product_category": "Vegetables",
             "processing_type": "Whole",
+            "taxable": 0,
+            "unit": "Kg",
             "price": 30.0
         },
         {
@@ -183,7 +194,8 @@ or
             "product_name": "Banana",
             "product_category": "Fruits",
             "processing_type": "Whole",
-            "price": 20.0
+            "taxable": 0,
+            "unit": "Kg"
         }
     ]
 }
@@ -206,6 +218,8 @@ fetch(url, {
             "product_name": "Apple",
             "product_category": "Vegetables",
             "processing_type": "Whole",
+            "taxable": 0,
+            "unit": "Kg",
             "price": 30.0
         }
     })
@@ -249,12 +263,14 @@ params = {
             "product_name": "Apple",
             "product_category": "Vegetables",
             "processing_type": "Whole"
+            "unit": "Kg",
         },        
         {
             "sku": "SKU407Q2",
             "product_name": "Apple",
             "product_category": "Vegetables",
             "processing_type": "Whole",
+            "unit": "Kg",
             "price": 30.0
         },
         
@@ -292,6 +308,7 @@ The API returns a list of order requests with the following fields:
 | `partner_order_no`| string  | Partner's order number.                          |
 | `customer`        | string  | Customer's name.                                |
 | `customer_address`| string  | Customer's address.                             |
+| `gps_coordinates`| string  | Customer's GPS Location.                             |
 | `total_amount`    | float   | Total amount of the order.               |
 | `status`          | string  | Current status of the order.             |
 | `docstatus`       | integer | Document status.                                |
@@ -319,6 +336,7 @@ The API returns a list of order requests with the following fields:
         "name": "OR-0001",
         "partner_order_no": "PO-123",
         "customer": "John Doe",
+        "gps_coordinates": "1,1",
         "customer_address": "123 Main Street",
         "total_amount": 500.00,
         "status": "Accepted",
@@ -406,6 +424,7 @@ except Exception as e:
 | `partner_order_no`| string   | Partner's order number.                        | Yes       |
 | `customer`        | string   | Customer's name.                               | Yes       |
 | `customer_address`| string   | Customer's address.                            | Yes       |
+| `gps_coordinates` | string   | Customer's GPS Location.                       | No        |
 | `email`           | string   | Customer's email address.                      | No        |
 | `phone_number`    | string   | Customer's phone number.                       | No        |
 | `remarks`         | string   | Additional remarks or notes.                   | No        |
@@ -428,6 +447,7 @@ except Exception as e:
     "partner_order_no": "Test",
     "customer": "Test",
     "customer_address": "Test",
+    "gps_coordinates": "1,1",
     "email": "email@test.com",
     "phone_number": "123",
     "remarks": "Test",
@@ -459,7 +479,8 @@ fetch(url, {
             "delivery_date": "2023-10-18",
             "partner_order_no": "Test",
             "customer": "Test",
-            "customer_address": "Test",
+            "gps_coordinates": "1,1",
+            "customer_address": "123 Main Street",
             "email": "email@test.com",
             "phone_number": "123",
             "remarks": "Test",
@@ -500,6 +521,7 @@ params = {
         "partner_order_no": "Test",
         "customer": "Test",
         "customer_address": "Test",
+        "gps_coordinates": "1,1",
         "email": "email@test.com",
         "phone_number": "123",
         "remarks": "Test",

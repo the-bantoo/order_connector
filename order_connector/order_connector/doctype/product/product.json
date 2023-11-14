@@ -13,6 +13,7 @@
   "section_break_6fqc7",
   "product_name",
   "product_category",
+  "taxable",
   "column_break_nbbqr",
   "sku",
   "processing_type",
@@ -27,7 +28,8 @@
   "column_break_cdscy",
   "approved",
   "column_break_3rrio",
-  "disabled"
+  "disabled",
+  "list_in_vendor_profile"
  ],
  "fields": [
   {
@@ -147,11 +149,23 @@
    "fieldtype": "Check",
    "label": "Disabled",
    "no_copy": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "taxable",
+   "fieldtype": "Check",
+   "label": "Is Taxable"
+  },
+  {
+   "default": "0",
+   "fieldname": "list_in_vendor_profile",
+   "fieldtype": "Check",
+   "label": "List in Vendor Profile"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-08 12:42:14.383664",
+ "modified": "2023-11-14 14:08:39.708983",
  "modified_by": "Administrator",
  "module": "Order Connector",
  "name": "Product",
@@ -208,7 +222,6 @@
   }
  ],
  "search_fields": "product_name, sku",
- "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],

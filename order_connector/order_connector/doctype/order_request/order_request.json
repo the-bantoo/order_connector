@@ -96,12 +96,12 @@
   },
   {
    "allow_on_submit": 1,
-   "default": "New",
+   "default": "Accepted",
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
    "no_copy": 1,
-   "options": "New\nAccepted\nCompleted\nRejected\nCancelled",
+   "options": "Accepted\nPending\nCancelled\nOngoing\nPartial Delivery\nIncomplete\nDelivered",
    "read_only_depends_on": "eval: doc.status==='Completed' || doc.status==='Rejected' || doc.status==='Cancelled';"
   },
   {
@@ -224,7 +224,7 @@
    "link_fieldname": "name"
   }
  ],
- "modified": "2023-11-08 10:05:09.431108",
+ "modified": "2023-11-14 14:28:00.001450",
  "modified_by": "Administrator",
  "module": "Order Connector",
  "name": "Order Request",

@@ -20,3 +20,6 @@ class Product(Document):
 			if self.disabled == 0:
 				frappe.msgprint(_("{0} is now available in Sales Transactions as {1}. <br>You can change anytime this by ticking <strong>Disabled</strong>").format(self.product_name, frappe.bold(self.item_code)))
 
+
+	# def after_insert(self):
+	# 	pass

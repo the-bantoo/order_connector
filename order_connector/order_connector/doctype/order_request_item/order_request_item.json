@@ -25,7 +25,8 @@
   "column_break_gehdk",
   "amount",
   "reject_qty",
-  "reject_reason"
+  "reject_reason",
+  "tax_amt"
  ],
  "fields": [
   {
@@ -41,7 +42,7 @@
   {
    "columns": 1,
    "fieldname": "unit",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Unit",
    "options": "UOM",
@@ -155,12 +156,17 @@
    "fieldname": "reject_qty",
    "fieldtype": "Float",
    "label": "Rejected Qty"
+  },
+  {
+   "fieldname": "tax_amt",
+   "fieldtype": "Currency",
+   "label": "Tax Amount"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-11-14 14:56:43.088363",
+ "modified": "2023-11-23 10:32:02.094714",
  "modified_by": "Administrator",
  "module": "Order Connector",
  "name": "Order Request Item",

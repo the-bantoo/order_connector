@@ -1,6 +1,17 @@
 import frappe
 from frappe import _
 from erpnext.stock.dashboard.item_dashboard import get_data as get_item_balances
+import inspect
+
+def attach_new_product(product, method):
+
+    stack = inspect.stack()
+
+    # The calling method name is at index 1 in the stack frame
+    method = stack[1][3]
+    frappe.errprint("--------------------------------------------")
+    frappe.errprint("Inserting " + str(method) + str(stack[1]))
+    frappe.errprint("--------------------------------------------")
 
 @frappe.whitelist()
 def get_orders(name=None, limit=20):
@@ -28,7 +39,11 @@ def insert_order(data):
             if item.get('sku') == '' or item.get('sku') == None:
                 return "sku cannot be empty"
         
-        order_dict = {'doctype': 'Order Request'}
+        user = frappe.get_doc("User", frappe.session.user)
+        order_dict = {
+            'doctype': 'Order Request',
+            'Partner': user.partner or ''
+        }
         order_dict.update(data)
 
         order = frappe.get_doc(order_dict)

@@ -253,10 +253,14 @@ class OrderRequest(Document):
 				frappe.throw(_("Row # {1}: {0} quantity cannot be less than 1").format(
 					frappe.bold(item_name), frappe.bold(item.idx)
 				))
+			#product = frappe.get_doc("Product", item.)
+			if not item.price or item.price == 0:
+				item.price = frappe.get_doc('Product', item.sku).price
 			if item.price < 1:
 				frappe.throw(_("Row # {1}: {0} price cannot be less than 1").format(
 					frappe.bold(item_name), frappe.bold(item.idx)
-				))			
+				))
+		self.calculate_totals()
 
 	@frappe.whitelist()
 	def update_item_balance(self):

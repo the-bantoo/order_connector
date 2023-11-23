@@ -126,6 +126,12 @@ app_license = "MIT"
 #	}
 # }
 
+doc_events = {
+	"Product": {
+		"after_insert": "order_connector.api.attach_new_product"
+	}
+}
+
 # Scheduled Tasks
 # ---------------
 

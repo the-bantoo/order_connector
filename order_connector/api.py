@@ -82,7 +82,9 @@ def get_products(sku=None, limit=20):
         for p in products:
             total_bal = 0
             price = 0
-            if p.item_code:
+            if p.price and p.price > 0:
+                price = p.price
+            elif p.item_code:
                 item_price = frappe.get_all('Item Price', fields=['price_list_rate'], filters={'item_code': p.item_code, 'selling': 1}, limit=1, order_by='creation desc')
                 if len(item_price) > 0:
                     price = item_price[0].price_list_rate or 0

@@ -76,12 +76,13 @@ def get_products(sku=None, limit=20):
         if sku:
             filters = {'sku': sku}
         from order_connector.order_connector.doctype.order_request.order_request import get_company
-        products = frappe.get_all('Product', fields=['sku', 'product_name', 'description', 'product_category', 'processing_type', 'item_code', 'approved', 'disabled', 'list_in_vendor_profile'], filters=filters, limit=limit)
+        products = frappe.get_all('Product', fields=['sku', 'product_name', 'description', 'product_category', 'processing_type', 'item_code', 'approved', 'price', 'disabled', 'list_in_vendor_profile'], filters=filters, limit=limit)
         #items = frappe.get_all('Item', fields=['item_code', 'item_name', 'description', 'stock_uom'], filters=filters, limit=limit)
         
         for p in products:
             total_bal = 0
             price = 0
+            
             if p.price and p.price > 0:
                 price = p.price
             elif p.item_code:
@@ -100,7 +101,8 @@ def get_products(sku=None, limit=20):
                             total_bal = total_bal + wb.actual_qty
             
             p.update({'price': price})
-            p.update({'balance': total_bal})
+            #p.update({'balance': total_bal})
+            p.update({'balance': 1000})
             
             item_list.append(p)
         

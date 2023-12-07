@@ -1,15 +1,13 @@
 {
  "charts": [],
- "content": "[{\"id\":\"cJgZIteJ6b\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Orders</span>\",\"col\":12}},{\"id\":\"L-GV10Z80c\",\"type\":\"card\",\"data\":{\"card_name\":\"Entries\",\"col\":4}},{\"id\":\"4kYP98s8tH\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
+ "content": "[{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Orders</span>\",\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"Entries\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Setup\",\"col\":4}}]",
  "creation": "2023-10-22 14:36:34.578926",
- "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
  "hide_custom": 0,
  "icon": "money-coins-1",
  "idx": 0,
- "is_hidden": 0,
  "label": "Orders",
  "links": [
   {
@@ -57,13 +55,30 @@
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Setup",
+   "link_count": 1,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Product Mapping",
+   "link_count": 0,
+   "link_to": "Product",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-10-26 11:27:14.381032",
+ "modified": "2023-12-07 11:45:27.798774",
  "modified_by": "Administrator",
  "module": "Order Connector",
  "name": "Orders",
- "number_cards": [],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,

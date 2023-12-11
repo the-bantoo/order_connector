@@ -117,7 +117,18 @@ def insert_product(data):
     try:
         if isinstance(data, list):
             count = 0
+            existing_products = frappe.get_all("Product", fields=['sku'], limit=0, pluck='sku')
+            #frappe.errprint(data)
+            skipped = 0
             for p in data:
+                # return '{} is in {}'. format(str(p['sku']),  existing_products)         
+
+                
+                if str(p['sku']) in existing_products:
+                    # increment and return message afterwards
+                    skipped += 1
+                    continue
+
                 check_data(p)
                 count += 1
                 pd = {'doctype': 'Product'}
@@ -125,7 +136,7 @@ def insert_product(data):
                 product = frappe.get_doc(pd)
                 product = product.insert()
 
-            return 'Inserted {} Products'.format(count)
+            return 'Inserted {} and skipped {} out of {} Product(s)'.format(count, skipped, len(data))
         elif isinstance(data, dict):
             check_data(data)
             pd = {'doctype': 'Product'}
@@ -141,7 +152,8 @@ def insert_product(data):
         "product_name": "Apple",
         "product_category": "Vegetables",
         "processing_type": "Whole",
-        "price": 30.0
+        "price": 30.0,
+        "taxable": 1
     }
 
 }''')
